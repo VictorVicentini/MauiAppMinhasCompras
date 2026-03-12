@@ -30,7 +30,7 @@
                             <MenuItem Text="Remover" />
                         </ViewCell.ContextActions>
                         <Grid ColumnDefinitions="*, *, *, *, *, *">
-                            <Label Text="{Binding Id}" Grid.Column="0" BackgroundColor="Blue" />
+                            <Label Text="{Binding Id}" Grid.Column="0"  TextColor="Blue" />
                             <Label Text="{Binding Descricao}" Grid.Column="1"/>
                             <Label Text="{Binding Preco, StringFormat='{0:C}'}" Grid.Column="2"/>
                             <Label Text="{Binding Quantidade}" Grid.Column="3"/>
