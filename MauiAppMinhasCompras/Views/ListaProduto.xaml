@@ -13,9 +13,9 @@
         <SearchBar x:Name="txt_search" 
                    Placeholder="Busca de Produtos"
                    TextChanged="txt_search_TextChanged"/>
-        <ListView x:Name="lst_produtos" >
+        <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
             <ListView.Header>
-                <Grid ColumnDefinitions="*, *, *, *, *, *">
+                <Grid ColumnDefinitions="*, *, *, *, *">
                     <Label Text="ID" Grid.Column="0" FontAttributes="Bold"/>
                     <Label Text="Descrição" Grid.Column="1" FontAttributes="Bold"/>
                     <Label Text="Preço" Grid.Column="2" FontAttributes="Bold"/>
@@ -27,9 +27,9 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Remover" />
+                            <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/>
                         </ViewCell.ContextActions>
-                        <Grid ColumnDefinitions="*, *, *, *, *, *">
+                        <Grid ColumnDefinitions="*, *, *, *, *">
                             <Label Text="{Binding Id}" Grid.Column="0"  TextColor="Blue" />
                             <Label Text="{Binding Descricao}" Grid.Column="1"/>
                             <Label Text="{Binding Preco, StringFormat='{0:C}'}" Grid.Column="2"/>
