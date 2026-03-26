@@ -23,7 +23,8 @@ public partial class NovoProduto : ContentPage
             };
 			int s = await App.Db.Insert(p);
            // await DisplayAlert("Sucesso", s.ToString(), "OK");
-            await DisplayAlert("Sucesso", "Produto cadastrado com sucesso!", "OK");
+            await DisplayAlert("Sucesso", "Produto cadastrado!", "OK");
+			await Navigation.PopAsync();
         }
 		catch (Exception ex)
 		{
