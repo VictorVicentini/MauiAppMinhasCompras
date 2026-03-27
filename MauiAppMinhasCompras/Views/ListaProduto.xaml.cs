@@ -21,6 +21,10 @@ public partial class ListaProduto : ContentPage
 
         try
         {
+            var categorias = await App.Db.GetCategorias();
+            pickerCategoria.ItemsSource = categorias;
+
+
             lista.Clear();
             List<Produto> tmp = await App.Db.GetAll();
             tmp.ForEach(i => lista.Add(i));
@@ -142,6 +146,7 @@ public partial class ListaProduto : ContentPage
         }
     }
 
+    /*
     private async void ToolbarItem_Clicked_Relatorio(object sender, EventArgs e)
     {
         try
@@ -160,6 +165,55 @@ public partial class ListaProduto : ContentPage
             await DisplayAlert("Ops", ex.Message, "OK");
         }
     }
+    */
+
+    private async void ToolbarItem_Clicked_Relatorio(object sender, EventArgs e)
+    {
+        try
+        {
+           
+            var relatorio = await App.Db.GetRelatorioPorCategoria();
+
+          
+            string msg = "";
+            foreach (var item in relatorio)
+            {
+                msg += $"{item.Categoria}: {item.Total:C}\n";
+            }
+
+            await DisplayAlert("Relatório de Gastos por Categoria", msg, "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+
+    private async void FiltroPorCategoria(string categoria)
+    {
+        try
+        {
+            lista.Clear();
+            List<Produto> tmp = await App.Db.SearchByCategoria(categoria);
+            tmp.ForEach(i => lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+
+    private void pickerCategoria_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string categoriaSelecionada = pickerCategoria.SelectedItem?.ToString();
+        if (!string.IsNullOrEmpty(categoriaSelecionada))
+        {
+            FiltroPorCategoria(categoriaSelecionada);
+        }
+    }
+
+
+
 
 
 }

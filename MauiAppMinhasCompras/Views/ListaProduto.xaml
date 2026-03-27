@@ -11,6 +11,9 @@
 
     </ContentPage.ToolbarItems>
 
+
+
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -24,6 +27,9 @@
                    Margin="0,0,0,0"
                    Placeholder="Busca de Produtos"
                    TextChanged="txt_search_TextChanged"/>
+        <Picker x:Name="pickerCategoria" 
+    Title="Selecione uma categoria"
+    SelectedIndexChanged="pickerCategoria_SelectedIndexChanged"/>
         <Frame Padding="0" Margin="10" VerticalOptions="FillAndExpand">
             <ListView x:Name="lst_produtos" 
                   IsPullToRefreshEnabled="True"
